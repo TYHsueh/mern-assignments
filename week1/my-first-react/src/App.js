@@ -1,10 +1,14 @@
 import './App.css';
 import Person from "./components/Person";
 import PersonCard from './components/PersonCard';
+import UserForm from '../../../week2/forms/src/components/UserForm';
 
 function App() {
   return (
     <div className="App">
+
+      <UserForm />
+
       <h1>Hello Dojo!</h1>
       <h2>Things I need to do</h2>
       <ul>
@@ -21,6 +25,8 @@ function App() {
       <PersonCard firstName={"John"} lastName={"Smith"} age={88} hair={"brown"} />
       <PersonCard firstName={"Millard"} lastName={"Fillmore"} age={50} hair={"brown"} />
       <PersonCard firstName={"Maria"} lastName={"Smith"} age={62} hair={"brown"} />
+
+      
     
     
     </div>
