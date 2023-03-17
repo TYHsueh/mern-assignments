@@ -2,11 +2,13 @@ import React, {useState} from 'react';
 //using an form object to hold all data
 
 const LectureFormObject = (props) => {
+        let bool=true;
 
         const [show, setShow] = useState({
             title:"",
             releaseYear:1920,
             genre:""
+
         })
         const changeHandler=(e) =>{
             //console.log(e.target);
@@ -24,12 +26,30 @@ const LectureFormObject = (props) => {
 
     return (
         <div style={{margin:"50px"}}>
-            <form>
-                <h3>Lecture Form Object</h3>
-                <label> Title:</label>
-                <input type="text" name="title" onChange={changeHandler}/>
 
+            <form style ={{display:"flex", flexDirection:"column", width:"450px", alignItems:"center"}}>                
+
+
+                <h3>Lecture Form Object</h3>
+                {
+                bool?
+                <p>boolean variable is true</p>:
+                <p>false</p>
+            }   
+                <label> Title:</label>
+                {
+                    show.title.length<3?
+                    <p>The title must be 3 or more characters</p>:
+                    null
+                }
+                <input type="text" name="title" onChange={changeHandler}/>
+                
                 <label>Release Year:</label>
+                {
+                    show.releaseYear < 1920?
+                    <p>Show must be released no earlier then 1920</p>:
+                    null
+                }
                 <input type="number" name="releaseYear" onChange={changeHandler} />
 
                 <label>Genre:</label>
