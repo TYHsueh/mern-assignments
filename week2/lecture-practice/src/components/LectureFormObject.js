@@ -36,6 +36,7 @@ const LectureFormObject = (props) => {
         const submitHandler= (e) =>{
             e.preventDefault();
             //console.log(`this is the new show: ${JSON.stringify(show)}`);
+            //two way binding
             setShow({
                 title:"",
                 releaseYear:1920,
