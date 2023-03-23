@@ -8,6 +8,14 @@ const nums = [23,56,19,20,9,20,78,55,32,42,8,12,80]
 // })
 // console.log(newArr);
 
+//map() A function that accepts up to three arguments: item, index and whole array(in fixed order)
+//The map method calls the callbackfn function one time for each element in the array
+nums.map((item, idx, wholeArray)=>{
+    console.log(item)
+})
+// this works like a for loop just fewer code
+
+
 
 const evenNums = nums.filter( (item, idx, wholeArray) => item % 2 === 0)
 console.log(evenNums);
