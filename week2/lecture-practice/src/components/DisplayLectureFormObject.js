@@ -33,7 +33,8 @@ const DisplayLectureFormObject =(props) =>{
                             display:"flex",
                             flexDirection:"column",
                             margin:"20px",
-                            padding:"10px"
+                            padding:"10px",
+                            border:"solid 2px grey"
                     }}>
                         {
                             show.watchedShow?

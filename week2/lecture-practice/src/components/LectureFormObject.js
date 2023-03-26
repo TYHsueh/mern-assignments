@@ -35,10 +35,8 @@ const LectureFormObject = (props) => {
                 setShow({...show, watchedShow: !show.watchedShow})
             }else{
                 setShow({...show, [e.target.name]:e.target.value}) //in this case we need else to prevent setShow update when checkbox changes
-            }
+            }      
             
-            
-
             //or we can use function statement below
             //setShow(prevState =>({...prevState, [e.target.name]:e.target.value}))
         }
