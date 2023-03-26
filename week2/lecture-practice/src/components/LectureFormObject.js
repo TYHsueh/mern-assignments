@@ -16,18 +16,28 @@ const LectureFormObject = (props) => {
         const [show, setShow] = useState({
             title:"",
             releaseYear:1920,
-            genre:""
+            genre:"",
+            watchedShow:false
 
         })
         const changeHandler=(e) =>{
             //console.log(e.target);
-            console.log("Name", e.target.name);
-            console.log("Value", e.target.value);
+            //console.log("Name", e.target.name);
+            //console.log("Value", e.target.value);
             //spread out the show(as it is an object), 
             //than get the [key_name(in this case the name of input)] and then set the value of that key into show object.
             //if the [name from input] match the key of the object, then react will update the value,
             //if the [name from input] does not match the key, then react will create a new key:value pair to the object
-            setShow({...show, [e.target.name]:e.target.value})
+            
+            //console.log(e);
+            //if the input type is checkbox(it is boolean), then change it to the opposite, in other input just stay the same
+            if(e.target.type === "checkbox"){
+                setShow({...show, watchedShow: !show.watchedShow})
+            }else{
+                setShow({...show, [e.target.name]:e.target.value}) //in this case we need else to prevent setShow update when checkbox changes
+            }
+            
+            
 
             //or we can use function statement below
             //setShow(prevState =>({...prevState, [e.target.name]:e.target.value}))
@@ -40,7 +50,8 @@ const LectureFormObject = (props) => {
             setShow({
                 title:"",
                 releaseYear:1920,
-                genre:""
+                genre:"",
+                watchedShow:false
             });
 
             //since showList is an array, setShowList add new show object to the end of showList
@@ -48,11 +59,15 @@ const LectureFormObject = (props) => {
         }
 
     return (
-        <div style={{margin:"50px"}}>
+        <div style={{
+            margin:"50px",
+            display:"flex",
+            justifyContent:"center"
+            }}>
 
             <form style ={
                 {padding:"10px",display:"flex", 
-                flexDirection:"column", 
+                flexDirection:"column",
                 width:"450px", 
                 alignItems:"center", 
                 border:"solid 2px grey"}}
@@ -68,9 +83,11 @@ const LectureFormObject = (props) => {
                 } */}
                 <label> Title:</label>
                 {
-                    show.title.length<3?
-                    <p>The title must be 3 or more characters</p>:
-                    null
+                    show.title.length === 0?
+                    null:
+                        show.title.length < 3 ?
+                        <p>The title must be 3 or more characters</p>:
+                        null
                 }
                 <input type="text" name="title" onChange={changeHandler} value={show.title}/>
                 
@@ -84,8 +101,11 @@ const LectureFormObject = (props) => {
 
                 <label>Genre:</label>
                 <input type="text" name="genre" onChange={changeHandler} value={show.genre} />
-
-                <input type="submit" value="Add Show"/>
+                
+                <label>Show Watched?</label>
+                <input type="checkbox" name="watchedShow" onChange={changeHandler} checked={show.watchedShow} />
+                {/*to show the value of checkbox we need use checked instead of value */}
+                <input type="submit" value="Add Show" style={{margin:"10px"}}/>
             </form>
         </div>
     );

@@ -1,7 +1,7 @@
 import LectureFormObject from './components/LectureFormObject';
 import './App.css';
-import LectureForm from './components/LectureForm';
-import Groceries from './components/Groceries';
+//import LectureForm from './components/LectureForm';
+//import Groceries from './components/Groceries';
 import {useState} from 'react';
 import DisplayLectureFormObject from './components/DisplayLectureFormObject';
 
@@ -13,8 +13,8 @@ function App() {
 
   return (
     <div className="App">
-      <Groceries/>
-      <LectureForm/>
+      {/*<Groceries/>
+      <LectureForm/> */}
       
       <LectureFormObject showList={showList} setShowList={setShowList} />
       <DisplayLectureFormObject showList={showList} setShowList={setShowList}/>
