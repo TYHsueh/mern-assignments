@@ -21,7 +21,7 @@ function fiveHeadsSync() {
 console.log(fiveHeadsSync());
 console.log("This is run after the fiveHeadsSync function completes");
 //////////////////////////////////////////////////////////
-
+//Using Promise
 function tossCoin() {
     return Math.random() > 0.5 ? "heads" : "tails";
     }
