@@ -30,6 +30,7 @@ const AxiosPokemonApi = () => {
                     })
                     }
                 </lu>
+                {/*//for map(()=>{return}) or ((=>())) both work */}
             </div>
         </div>
     );
