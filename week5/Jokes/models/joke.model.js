@@ -1,6 +1,6 @@
 const mongoose= require('mongoose');
 
-//create a Schema for joke and describe the structure of collection(table in mysql)
+//create a Schema for joke and describe the structure of collection(table in mysql). Like the blueprint of object
 const JokeSchema = new mongoose.Schema({
     title: {type: String},
     punchLine: {type: String}
