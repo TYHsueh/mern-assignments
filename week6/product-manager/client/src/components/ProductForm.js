@@ -7,6 +7,7 @@ const ProductForm = (props) => {
         price:0,
         desc:""
     });
+    const {productList, setProductList} =props; 
 
     const changeHandler=(e) =>{
         setProduct({...product, [e.target.name]:e.target.value})
@@ -20,7 +21,10 @@ const ProductForm = (props) => {
             .then((res) =>{
                 console.log(res);
                 console.log(res.data);
-                //upon a successful post request, reset setState back to "", which will clear out the form
+                //upon a sucessful post request, set product list to include new product for display purpose
+                setProductList([...productList, res.data.product]);
+                
+                //upon a successful post request, reset useState back to "", which will clear out the form
                 setProduct({
                     title:"",
                     price: 0,
@@ -36,7 +40,7 @@ const ProductForm = (props) => {
     return (
         <div>
             <form onSubmit={submitHandler}>
-                <h3>New Product</h3>
+                <h3>Add New Product</h3>
                 <div>
                     <label>Title:</label>
                     <input type="text" name="title" onChange={changeHandler} value={product.title} />
@@ -57,6 +61,9 @@ const ProductForm = (props) => {
                 </div>
                 
             </form>
+            <div>
+                <hr />
+            </div>
             
         </div>
     );
