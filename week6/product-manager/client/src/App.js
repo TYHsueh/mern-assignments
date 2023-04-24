@@ -3,6 +3,7 @@ import {useState} from 'react';
 import ProductForm from './components/ProductForm';
 import DisplayProduct from './components/DisplayProduct';
 import OneProduct from './components/OneProduct';
+import EditProduct from './components/EditProduct';
 import {BrowserRouter,Routes, Route, Link} from 'react-router-dom';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           {/*within element, wrap multiple components with <></> to display in the same path
           or we can create a "views" folder with js file including mutiple components in the same file and display that js file inside elemnet tag */}
           <Route path='/viewProduct/:id' element={<OneProduct />} />
+          <Route path='/edit/:id' element={<EditProduct/>} />
         </Routes>
       </BrowserRouter>
       

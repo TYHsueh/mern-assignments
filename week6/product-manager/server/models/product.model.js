@@ -9,7 +9,8 @@ const productSchema = new mongoose.Schema({
     },
     price:{
         type: Number,
-        required: [true, 'Orice is required']
+        required: [true, 'Price is required'],
+        min: [1, 'Price must be at least 1']
     },
     desc:{
         type: String,

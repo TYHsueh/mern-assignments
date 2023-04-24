@@ -1,49 +1,61 @@
-import React, {useState} from 'react';
-import axios from 'axios';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios'; 
+import {useNavigate, useParams, Link} from 'react-router-dom';
 
-const ProductForm = (props) => {
-    const [product, setProduct] = useState({
+
+const EditProduct = (props) => {
+    const navigate = useNavigate();
+    const {id} = useParams();
+    const [product, setProduct] =useState({
         title:"",
         price:0,
         desc:""
     });
-    const {productList, setProductList} =props; 
-
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({});
 
     const changeHandler=(e) =>{
         setProduct({...product, [e.target.name]:e.target.value})
     };
-
+    //! need to find the product
+    useEffect(() =>{
+        axios.get(`http://localhost:8000/api/allProducts/${id}`)
+        .then((res) =>{
+            console.log(res.data.product)
+            setProduct(res.data.product)
+        })
+        .catch((err) =>{
+            console.log(err)
+        })
+    },[]);
+    //need to update submit handler
     const submitHandler=(e) =>{
         e.preventDefault();
         console.log(product);        
         //once submitted, create a new product in the schema(table)
-        axios.post("http://localhost:8000/api/allProducts/new", product)
+        axios.put(`http://localhost:8000/api/allProducts/${id}`, product)
             .then((res) =>{
                 console.log(res);
-                console.log(res.data);
-                //upon a sucessful post request, set product list to include new product for display purpose
-                setProductList([...productList, res.data.product]);
-                
+                navigate("/")
                 //upon a successful post request, reset useState back to "", which will clear out the form
-                setProduct({
-                    title:"",
-                    price: 0,
-                    desc:""
-                });
+                //setProduct({
+                //    title:"",
+                //    price: 0,
+                //    desc:""
+                //});
             })
             .catch((err) =>{
                 console.log(err.response.data.errors)
                 setErrors(err.response.data.errors)
             })
-    }
+    };
+
 
 
     return (
         <div>
+            
             <form onSubmit={submitHandler}>
-                <h3>Add New Product</h3>
+                <h2>Edit Product</h2>
                 <div>
                     <label>Title:</label>
                     <input type="text" name="title" onChange={changeHandler} value={product.title} />
@@ -75,16 +87,13 @@ const ProductForm = (props) => {
                 </div>
                 
                 <div>
-                    <input type="submit" value="Create" />
+                    <input type="submit" value="Edit" />
                 </div>
-                
             </form>
-            <div>
-                <hr />
-            </div>
+            <Link to={'/'} >Back</Link>
             
         </div>
     );
 }
 
-export default ProductForm;
+export default EditProduct;
